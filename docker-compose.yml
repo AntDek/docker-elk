@@ -8,7 +8,7 @@ services:
       - "9200:9200"
       - "9300:9300"
     environment:
-      ES_JAVA_OPTS: "-Xmx1g -Xms4g"
+      ES_JAVA_OPTS: "-Xms1g -Xmx4g"
       # disable X-Pack
       # see https://www.elastic.co/guide/en/x-pack/current/xpack-settings.html
       #     https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html#xpack-enabling
@@ -30,7 +30,7 @@ services:
     ports:
       - "5044:5044"
     environment:
-      LS_JAVA_OPTS: "-Xmx1g -Xms4g"
+      LS_JAVA_OPTS: "-Xms1g -Xmx4g"
     networks:
       - elk
     depends_on:
