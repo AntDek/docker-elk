@@ -8,7 +8,7 @@ services:
       - "9200:9200"
       - "9300:9300"
     environment:
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+      ES_JAVA_OPTS: "-Xmx1g -Xms4g"
       # disable X-Pack
       # see https://www.elastic.co/guide/en/x-pack/current/xpack-settings.html
       #     https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html#xpack-enabling
@@ -18,6 +18,9 @@ services:
       xpack.watcher.enabled: "false"
     networks:
       - elk
+    volumes:
+      # store Elasticsearch data
+      - ./elasticsearch/storage:/usr/share/elasticsearch/data
 
   logstash:
     build: logstash/
@@ -27,7 +30,7 @@ services:
     ports:
       - "5044 :5044"
     environment:
-      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+      LS_JAVA_OPTS: "-Xmx1g -Xms4g"
     networks:
       - elk
     depends_on:
